@@ -15,4 +15,6 @@ An HTML5 visualization for CPU Algorithms, mainly for FCFS, SJT, SRT, and RR alg
 <b>TAT</b> = <i>Turn Around Time</i><br>
 <b>AWT</b> = <i>Average Waiting Time</i><br>
 <b>ATAT</b> = <i>Average Turn Around Time</i><br>
-<b>TQ</b> = <i>Time Quantum</i>
+<b>TQ</b> = <i>Time Quantum</i><br><br>
+
+You can play around with it through this link: https://tenick.github.io/CPUAlgorithmsHTML5/
