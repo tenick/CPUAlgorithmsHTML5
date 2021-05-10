@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    background-color: #565459;
+    color: #8d8cba;
+}
+
+p {
+    text-align: left;
+    font-size: 1rem;
+}
+
+.info-item {
+    font-weight: bolder;
+    font-size: 1.15rem;
+}
+
+.header-title {
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 3rem;
+}
+.header-title::before {
+    content: "© Kenneth Usares 2021. All rights reserved.";
+    top: 100%;
+    position: absolute;
+    font-size: 0.8rem;
+}
+
+.container {
+    border-radius: 10px;
+    background-color: white;
+    max-width: 600px;
+    padding: 30px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    box-shadow: 5px 5px 18px #222;
+}
+
+.time-quantum-container {
+    display: none;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    font-family: inherit;
+    font-size: larger;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    font-family: inherit;
+    font-size: larger;
+    display: block;
+    text-align: right;
+    margin-left: auto; 
+    margin-right: 0;
+    margin-bottom: 1rem;
+    background-color: #82d1b5;
+    color: white;
+    border: none;
+    padding: 0.2rem 1rem;
+}
+
+input[type="submit"]:hover {
+    background-color: #a2ebd1;
+    cursor: pointer;
+}
+
+.execute-algo {
+    margin-top: 1rem !important;
+    width: 100%;
+    margin: auto;
+    text-align: center !important;
+}
+
+.output-container {
+    display: none;
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/given_table.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/input.css">
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="icon" href="favicon.png">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling Algorithms</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-title">
+                CPU Scheduling Algorithms
+            </div>
+        </div>
+        <div class="input-container">
+            <!-- C H O O S E  C P U  A L G O R I T H M -->
+            <span class="dropdown-label">Choose an algorithm:</span>
+            <div class="dropdown">
+                <button id="CPUAlgorithm" onclick="dropdownTrigger(this);" class="dropdown-btn">First Come First Serve</button>
+                <div class="dropdown-contents">
+                    <button onclick="select(this);" class="dropdown-content">First Come First Serve</button>
+                    <button onclick="select(this);" class="dropdown-content">Shortest Job First</button>
+                    <button onclick="select(this);" class="dropdown-content">Shortest Remaining Time</button>
+                    <button onclick="select(this);" class="dropdown-content">Round Robin</button>
+                </div>
+            </div>
+            
+            <!-- C H O O S E  T I M E  Q U A N T U M  F O R M A T -->
+            <div class="time-quantum-container">
+                <span class="dropdown-label">Time Quantum Format:</span>
+                <div class="dropdown">
+                    <button id="timeQuantumFormat" onclick="dropdownTrigger(this);" class="dropdown-btn">SS</button>
+                    <div class="dropdown-contents">
+                        <button onclick="select(this);" class="dropdown-content">HH:MM:SS</button>
+                        <button onclick="select(this);" class="dropdown-content">HH:MM</button>
+                        <button onclick="select(this);" class="dropdown-content">HH</button>
+                        <button onclick="select(this);" class="dropdown-content">MM</button>
+                        <button onclick="select(this);" class="dropdown-content">SS</button>
+                    </div>
+                </div>
+                <span class="dropdown-label">Time Quantum:</span>
+                <input name="timeQuantum" type="text">
+            </div>
+
+            <!-- C H O O S E  A T  F O R M A T -->
+            <span class="dropdown-label">Arrival Time Format:</span>
+            <div class="dropdown">
+                <button id="arrivalTimeFormat" onclick="dropdownTrigger(this);" class="dropdown-btn">SS</button>
+                <div class="dropdown-contents">
+                    <button onclick="select(this);" class="dropdown-content">HH:MM:SS</button>
+                    <button onclick="select(this);" class="dropdown-content">HH:MM</button>
+                    <button onclick="select(this);" class="dropdown-content">HH</button>
+                    <button onclick="select(this);" class="dropdown-content">MM</button>
+                    <button onclick="select(this);" class="dropdown-content">SS</button>
+                </div>
+            </div>
+
+            <!-- C H O O S E  R T  F O R M A T -->
+            <span class="dropdown-label">Run/Burst Time Format:</span>
+            <div class="dropdown">
+                <button id="runTimeFormat" onclick="dropdownTrigger(this);" class="dropdown-btn">SS</button>
+                <div class="dropdown-contents">
+                    <button onclick="select(this);" class="dropdown-content">HH:MM:SS</button>
+                    <button onclick="select(this);" class="dropdown-content">HH:MM</button>
+                    <button onclick="select(this);" class="dropdown-content">HH</button>
+                    <button onclick="select(this);" class="dropdown-content">MM</button>
+                    <button onclick="select(this);" class="dropdown-content">SS</button>
+                </div>
+            </div>
+            
+            <!-- A D D  J O B S  A R E A-->
+            <span class="dropdown-label">Arrival Time:</span>
+            <input name="arrivalTime" type="text">
+            <span class="dropdown-label">Run/Burst Time:</span>
+            <input name="runTime" type="text">
+            <input onclick="addRow();" type="submit" value="Add Job">
+            
+            <!-- G I V E N  J O B S -->
+            <span class="dropdown-label">Given:</span>
+            <table>
+                <thead>
+                    <tr>
+                        <th>J#</th>
+                        <th>Arrival Time</th>
+                        <th>Run Time</th>
+                        <th style="padding:0;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- tr format
+                    <tr>
+                        <td>1</td>
+                        <td>12:34:56</td>
+                        <td>11:22:33</td>
+                        <td onclick="removeRow(this);" class="remove-row"></td>
+                    </tr>
+                    -->
+                </tbody>
+            </table>
+            
+            <!-- C H O O S E  G A N T T  C H A R T  F O R M A T -->
+            <span class="dropdown-label">Gantt Chart Format:</span>
+            <div class="dropdown">
+                <button id="ganttChartFormat" onclick="dropdownTrigger(this);" class="dropdown-btn">SS</button>
+                <div class="dropdown-contents">
+                    <button onclick="select(this);" class="dropdown-content">HH:MM:SS</button>
+                    <button onclick="select(this);" class="dropdown-content">HH:MM</button>
+                    <button onclick="select(this);" class="dropdown-content">HH</button>
+                    <button onclick="select(this);" class="dropdown-content">MM</button>
+                    <button onclick="select(this);" class="dropdown-content">SS</button>
+                </div>
+            </div>
+
+            <span class="dropdown-label">Round to no. of decimal places: (-1 for full precision)</span>
+            <input name="decimalPlaces" type="number" min="-1" value="-1">
+            <!-- E X E C U T E  A L G O R I T H M -->
+            <input onclick="executeAlgorithm();" class="execute-algo" value="Execute Algorithm" type="submit">
+        </div>
+        <hr style="margin-bottom: 2rem;">
+
+        <!-- O U T P U T  D I V -->
+        <div class="output-container">
+            <p>CPU Algorithm used: <span id="outUsedAlgo" class="info-item">ah</span></p>
+            <p>Table/Gantt Chart format: <span id="outFormat" class="info-item"></span></p>
+            <h2>Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th title="Job Number">J#</th>
+                        <th title="Arrival Time">AT</th>
+                        <th title="Run Time">RT</th>
+                        <th title="Start Time">ST</th>
+                        <th title="Final Time">FT</th>
+                        <th title="Waiting Time">WT</th>
+                        <th title="Turn Around Time">TAT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- tr format
+                    <tr>
+                        <td>1</td>
+                        <td>12:34:56</td>
+                        <td>11:22:33</td>
+                        <td onclick="removeRow(this);" class="remove-row"></td>
+                    </tr>
+                    -->
+                </tbody>
+            </table>
+            <p>Average Waiting Time: <span id="outAWT" class="info-item"></span></p>
+            <p>Average Turn Around Time: <span id="outATAT" class="info-item"></span></p>
+            
+            <!-- G A N T T  C H A R T -->
+            <h2>Gantt Chart</h2>
+            <canvas id="ganttChart"></canvas>
+            <input checked id="outGCShowIdleTimetype" onclick="executeAlgorithm();" type="checkbox"> Show Starting Idle Time
+        </div>
+    </div>
+    <div class="time">
+    </div>
+    <script src="js/select_dropdown.js"></script>
+    <script src="js/table_script.js"></script>
+    <script src="js/algorithm_execution.js"></script>
+    <script src="js/output_generation.js"></script>
+</body>
+</html>

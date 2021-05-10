@@ -1,0 +1,30 @@
+/* G I V E N  T A B L E */
+table {
+    margin: auto;
+    margin-bottom: 1rem;
+}
+th {
+    background-color: #82d1b5;
+    color: white;
+    font-size: 1rem;
+    padding: .25rem 1.5rem;
+}
+td {
+    font-size: 1rem;
+    text-align: center;
+}
+tbody tr:nth-child(even){
+    background-color: #bae0d3;
+}
+.remove-row {
+    background-color: #e05858;
+    color: white;
+    padding: 0 .5rem;
+}
+.remove-row::before{
+    content: "X";
+}
+.remove-row:hover {
+    background-color: #e87d7d;
+    cursor: pointer;
+}
